@@ -13,6 +13,7 @@ export const BacklogColumn = ({ stage }) => {
         assigneeName="Garnik"
         assigneeSurname="Hovsepyan"
         created={new Date("2022-05-02").getTime()}
+        issueType="bug"
       />
     </div>
   );
@@ -29,6 +30,7 @@ export const ToDoColumn = ({ stage }) => {
         assigneeName="Armen"
         assigneeSurname="Asatryan"
         created={new Date("2022-04-20").getTime()}
+        issueType="task"
       />
     </div>
   );

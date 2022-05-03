@@ -70,3 +70,18 @@
 .long-time {
   color: red;
 }
+
+.issuetype-icon {
+  position: absolute;
+  font-size: 25px;
+  right: 10px;
+  top: 5px;
+}
+
+.task-icon {
+  color: green;
+}
+
+.bug-icon {
+  color: red;
+}

@@ -6,6 +6,7 @@ export const TaskCard = ({
   assigneeSurname,
   assigneeName,
   created,
+  issueType,
 }) => {
   const openedTime = Math.trunc((Date.now() - created) / (1000 * 60 * 60 * 24));
   return (
@@ -30,6 +31,17 @@ export const TaskCard = ({
         } time-opened-icon bx bx-dots-horizontal-rounded`}
         title={`${openedTime} Days`}
       ></i>
+      {issueType === "task" ? (
+        <i
+          title={issueType}
+          class="issuetype-icon task-icon bx bx-check-square"
+        ></i>
+      ) : (
+        <i
+          title={issueType}
+          class="issuetype-icon bug-icon bx bxs-square-rounded"
+        ></i>
+      )}
     </div>
   );
 };

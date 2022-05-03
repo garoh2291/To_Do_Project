@@ -1,0 +1,8 @@
+.main-section-body {
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: space-around;
+  background-color: #f9f8f8;
+  padding: 10px;
+}

@@ -1,0 +1,20 @@
+.nav-item {
+  font-family: "Tangerine", serif;
+  font-size: 30px;
+  color: #6cacff;
+  cursor: pointer;
+  height: 100%;
+  display: block;
+  padding: 10px 20px;
+}
+.nav-item:hover {
+  background-color: #abc7ff;
+  color: #fff;
+}
+
+.nav-item.active {
+  background-color: #abc7ff;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bolder;
+}

@@ -1,0 +1,21 @@
+.filter-header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.filter-header-text {
+  font-size: 30px;
+}
+
+.filter-small-icon {
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.filter-small-icon:hover {
+  color: rgb(126, 126, 218);
+}

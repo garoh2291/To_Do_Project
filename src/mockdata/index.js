@@ -1,5 +1,6 @@
 export const TODO_LIST_MOCK_DATA = [
   {
+    _id: 1,
     header: "Create layout",
     description: "create some skin layout and make dinamic actions",
     isHighPriority: true,
@@ -10,6 +11,7 @@ export const TODO_LIST_MOCK_DATA = [
     stage: "Backlog",
   },
   {
+    _id: 2,
     header: "Add task cards",
     description: "Create task card component and add in layout",
     isHighPriority: false,
@@ -20,6 +22,7 @@ export const TODO_LIST_MOCK_DATA = [
     stage: "ToDo",
   },
   {
+    _id: 3,
     header: "Task 3",
     description: "Test taskname for test project",
     isHighPriority: false,
@@ -30,6 +33,7 @@ export const TODO_LIST_MOCK_DATA = [
     stage: "In Progress",
   },
   {
+    _id: 4,
     header: "Task 4",
     description:
       "Test taskname for test project wich need to be in Done section",
@@ -39,5 +43,17 @@ export const TODO_LIST_MOCK_DATA = [
     created: new Date("2022-04-28").getTime(),
     issueType: "bug",
     stage: "Done",
+  },
+  {
+    _id: 5,
+    header: "New Task",
+    description:
+      "Make new Web site for our company , use Html , css and js skills to make it mor dinamic",
+    isHighPriority: false,
+    assigneeName: "Mayis",
+    assigneeSurname: "Sargsyan",
+    created: new Date("2022-05-10").getTime(),
+    issueType: "task",
+    stage: "Backlog",
   },
 ];

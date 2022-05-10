@@ -1,4 +1,6 @@
+import { TaskDescription } from "./TaskDescription";
 import "./styles.css";
+import { useState } from "react";
 export const TaskCard = ({ obj }) => {
   const {
     header,
@@ -10,8 +12,17 @@ export const TaskCard = ({ obj }) => {
     issueType,
   } = obj;
   const openedTime = Math.trunc((Date.now() - created) / (1000 * 60 * 60 * 24));
+
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+  const descriptionOpenHandler = () => {
+    if (isDescriptionOpen) {
+      setIsDescriptionOpen(false);
+    } else {
+      setIsDescriptionOpen(true);
+    }
+  };
   return (
-    <div className="task-card">
+    <div className="task-card" onClick={descriptionOpenHandler}>
       <h6 className="card-header1">{header}</h6>
       <p className="card-description" title={description}>
         {description}
@@ -45,6 +56,12 @@ export const TaskCard = ({ obj }) => {
           class="issuetype-icon bug-icon bx bxs-square-rounded"
         ></i>
       )}
+      <TaskDescription
+        onClick={descriptionOpenHandler}
+        isOpen={isDescriptionOpen}
+        obj={obj}
+        openedTime={openedTime}
+      />
     </div>
   );
 };

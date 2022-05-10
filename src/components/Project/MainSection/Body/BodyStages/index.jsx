@@ -11,7 +11,7 @@ export const StageColumn = ({ stage }) => {
     <div className="stage-colums">
       <StageHeader stage={stage} />
       {stageItems.map((card) => {
-        return <TaskCard obj={card} />;
+        return <TaskCard obj={card} key={card._id} />;
       })}
     </div>
   );

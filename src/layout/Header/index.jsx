@@ -3,7 +3,7 @@ import "./styles.css";
 
 export const Header = () => {
   return (
-    <header className="layout-header">
+    <header className="layout-header1">
       <Navbar />
     </header>
   );

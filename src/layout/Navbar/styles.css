@@ -1,9 +1,9 @@
-.navbar {
+.navbar1 {
   height: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.navbar-list {
+.navbar-list1 {
   display: flex;
   align-items: center;
   height: 100%;

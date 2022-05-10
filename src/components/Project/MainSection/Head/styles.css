@@ -1,5 +1,38 @@
-.main-section-head {
-  height: 60px;
+.main-section-head-open {
+  height: 200px;
   width: 100%;
   background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.main-section-head-close {
+  height: 15px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  position: relative;
+  transition: 0.3s;
+}
+.pull-down {
+  position: absolute;
+  font-size: 20px;
+  right: 50%;
+  bottom: -15px;
+  cursor: pointer;
+}
+
+.pull-up {
+  position: absolute;
+  font-size: 20px;
+  right: 50%;
+  bottom: 0;
+  cursor: pointer;
 }

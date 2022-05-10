@@ -32,6 +32,15 @@ export const ToDoColumn = ({ stage }) => {
         created={new Date("2022-04-20").getTime()}
         issueType="task"
       />
+      <TaskCard
+        header="Add task cards"
+        description="Create task card component and add in layout"
+        isHighPriority={false}
+        assigneeName="Armen"
+        assigneeSurname="Asatryan"
+        created={new Date("2022-04-20").getTime()}
+        issueType="task"
+      />
     </div>
   );
 };

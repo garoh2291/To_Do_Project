@@ -11,8 +11,8 @@ export const Navbar = () => {
     setActiveLink(link);
   };
   return (
-    <nav className="navbar">
-      <ul className="navbar-list">
+    <nav className="navbar1">
+      <ul className="navbar-list1">
         <NavItem
           label={aboutMe.label}
           link={aboutMe.link}

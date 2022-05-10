@@ -1,0 +1,8 @@
+.main-section-head-right-show {
+  display: grid;
+  grid-gap: 14px;
+}
+
+.main-section-head-right-hide {
+  display: none;
+}

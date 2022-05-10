@@ -11,17 +11,17 @@ export const TaskCard = ({
   const openedTime = Math.trunc((Date.now() - created) / (1000 * 60 * 60 * 24));
   return (
     <div className="task-card">
-      <h6 className="card-header">{header}</h6>
+      <h6 className="card-header1">{header}</h6>
       <p className="card-description">{description}</p>
       <p className={isHighPriority ? "priority-high" : "priority-low"}>
         {isHighPriority ? "High" : "Low"}
       </p>
 
       <div
-        className="card-assignee"
+        className="card-assignee1"
         title={`${assigneeName} ${assigneeSurname}`}
       >
-        <p className="card-assignee-text">
+        <p className="card-assignee-text1">
           {`${assigneeName[0]} ${assigneeSurname[0]}`}
         </p>
       </div>

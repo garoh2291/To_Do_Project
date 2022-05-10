@@ -1,0 +1,9 @@
+.main-section-close {
+  width: 80%;
+  height: 100%;
+}
+
+.main-section-open {
+  width: calc(100% - 50px);
+  height: 100%;
+}

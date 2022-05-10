@@ -1,0 +1,36 @@
+.filter-content {
+  margin-left: 30px;
+}
+
+.filter-by {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-icon-by {
+  margin-left: 5px;
+}
+
+.filter-methods-open {
+  width: 200px;
+  min-height: 100px;
+  margin-top: 15px;
+}
+
+.set-filter-mode {
+  width: 50px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.set-filter-mode:hover {
+  background-color: #fff;
+  color: #000;
+}

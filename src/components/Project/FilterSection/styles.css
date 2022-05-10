@@ -1,0 +1,40 @@
+.filter-section-open {
+  width: 20%;
+  height: 100%;
+  color: #fff;
+  background-color: #0f0f0f;
+  box-shadow: 0px 10px 10px 1px #0f0f0f;
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.filter-section-close {
+  width: 40px;
+  height: 100%;
+  background-color: #0f0f0f;
+  color: #fff;
+
+  box-shadow: 0px 10px 10px 1px #0f0f0f;
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.filter-button {
+  color: #fff;
+  font-size: 30px;
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  right: 3px;
+  top: 0;
+}
+
+.filter-button:hover {
+  background-color: #c7c7c7;
+}

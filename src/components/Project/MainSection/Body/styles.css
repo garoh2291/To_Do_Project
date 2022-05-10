@@ -1,0 +1,19 @@
+.main-section-body-open {
+  width: 100%;
+  height: calc(100% - 200px);
+  display: flex;
+  justify-content: space-around;
+  background-color: #f9f8f8;
+  padding: 10px;
+  overflow: scroll;
+}
+
+.main-section-body-close {
+  width: 100%;
+  height: calc(100% - 15px);
+  display: flex;
+  justify-content: space-around;
+  background-color: #f9f8f8;
+  padding: 10px;
+  overflow: scroll;
+}

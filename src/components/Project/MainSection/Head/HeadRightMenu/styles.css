@@ -1,8 +1,9 @@
 .main-section-head-right-show {
   display: grid;
   grid-gap: 14px;
+  visibility: visible;
 }
 
 .main-section-head-right-hide {
-  display: none;
+  visibility: hidden;
 }

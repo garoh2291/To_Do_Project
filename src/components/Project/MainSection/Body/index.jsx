@@ -1,19 +1,14 @@
-import {
-  BacklogColumn,
-  DoneColumn,
-  InProgressColumn,
-  ToDoColumn,
-} from "./BodyStages";
+import { StageColumn } from "./BodyStages";
 import "./styles.css";
 export const Body = ({ isOpen }) => {
   return (
     <div
       className={isOpen ? "main-section-body-open" : "main-section-body-close"}
     >
-      <BacklogColumn stage="Backlog" />
-      <ToDoColumn stage="ToDo" />
-      <InProgressColumn stage="In Progress" />
-      <DoneColumn stage="Done" />
+      <StageColumn stage="Backlog" />
+      <StageColumn stage="ToDo" />
+      <StageColumn stage="In Progress" />
+      <StageColumn stage="Done" />
     </div>
   );
 };

@@ -26,7 +26,7 @@ const ModalButton = () => {
         outline
         style={{ width: "100%" }}
       >
-        Click Me
+        Add New Task
       </Button>
       <Modal isOpen={isOpen}>
         <ModalHeader charCode="Y" toggle={openModal}>

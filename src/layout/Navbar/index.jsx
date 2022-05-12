@@ -6,7 +6,6 @@ import "./styles.css";
 const { project, contact, aboutMe } = NAVBAR_PAGES;
 export const Navbar = () => {
   const [activeLink, setActiveLink] = useState(project.link);
-
   const navItemClickHandler = (link) => {
     setActiveLink(link);
   };

@@ -1,8 +1,10 @@
 .main-section-body-open {
   width: 100%;
-  height: calc(100% - 200px);
+  height: calc(100% - 150px);
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+  align-items: flex-start;
   background-color: #f9f8f8;
   padding: 10px;
   overflow: scroll;
@@ -12,8 +14,11 @@
   width: 100%;
   height: calc(100% - 15px);
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+
   background-color: #f9f8f8;
   padding: 10px;
   overflow: scroll;
+  align-items: flex-start;
 }

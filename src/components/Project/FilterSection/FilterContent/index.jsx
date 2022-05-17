@@ -21,11 +21,12 @@ export const FilterContent = ({ isOpen }) => {
           </div>
           {isSectionOpen ? (
             <div className="filter-methods-open">
-              <SearchMethod name="Only My Issues" />
-              <SearchMethod name="Created Date" />
-              <SearchMethod name="Priority" />
-              <SearchMethod name="Issue Type" />
-              <button className="set-filter-mode">Filter</button>
+              <SearchMethod name="Active" />
+              <SearchMethod name="Done" />
+              <SearchMethod name="Created " />
+              <SearchMethod name="Created" />
+              <SearchMethod name="completed " />
+              <SearchMethod name="completed " />
             </div>
           ) : (
             ""

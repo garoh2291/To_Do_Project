@@ -14,11 +14,28 @@ const SortSelect = () => {
   );
 };
 
-const SearchInput = () => {
-  return <Input type="search" placeholder="Search" name="search"></Input>;
+const SearchInput = ({ thisItemsArray, SetThisItemsArray }) => {
+  const searchChange = (e) => {
+    const { value } = e.target;
+    fetch(`http://localhost:3001/task?search=${value}`)
+      .then((res) => res.json())
+      .then((data) => SetThisItemsArray(data));
+  };
+  return (
+    <Input
+      type="search"
+      placeholder="Search description"
+      name="search"
+      onChange={searchChange}
+    ></Input>
+  );
 };
 
-export const HeadRightMenu = ({ isOpen }) => {
+export const HeadRightMenu = ({
+  isOpen,
+  SetThisItemsArray,
+  thisItemsArray,
+}) => {
   const [isShowAddTaskModal, setIsShowAddTaskModal] = useState(false);
   const handleBtnClick = () => {
     if (isShowAddTaskModal) {
@@ -42,9 +59,13 @@ export const HeadRightMenu = ({ isOpen }) => {
         Add New Task
       </Button>{" "}
       <SortSelect />
-      <SearchInput />
+      <SearchInput
+        SetThisItemsArray={SetThisItemsArray}
+        thisItemsArray={thisItemsArray}
+      />
       {isShowAddTaskModal && (
         <SharedModal
+          SetThisItemsArray={SetThisItemsArray}
           onClose={() => {
             setIsShowAddTaskModal(false);
           }}

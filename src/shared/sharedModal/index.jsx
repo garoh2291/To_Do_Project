@@ -10,7 +10,7 @@ import {
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { isRequired, maxLength30, minLength3 } from "../../helpers/validations";
 
-const AddTaskForm = ({ onSubmitCallback }) => {
+const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
   const [inputsData, setInputsData] = useState({
     title: {
       value: "",
@@ -35,9 +35,13 @@ const AddTaskForm = ({ onSubmitCallback }) => {
       }),
     })
       .then((res) => res.json())
-      .then((task) => {
-        console.log(task);
+      .then((data) => {
+        SetThisItemsArray((prev) => {
+          console.log(data);
+          return [...prev, data];
+        });
       });
+
     onSubmitCallback();
   };
 
@@ -108,12 +112,15 @@ const AddTaskForm = ({ onSubmitCallback }) => {
     </Form>
   );
 };
-export const SharedModal = ({ onClose }) => {
+export const SharedModal = ({ onClose, SetThisItemsArray }) => {
   return (
     <Modal toggle={onClose} isOpen={true}>
       <ModalHeader toggle={onClose}>Modal title</ModalHeader>
       <ModalBody>
-        <AddTaskForm onSubmitCallback={onClose} />
+        <AddTaskForm
+          onSubmitCallback={onClose}
+          SetThisItemsArray={SetThisItemsArray}
+        />
       </ModalBody>
       <ModalFooter>
         <Button onClick={onClose}>Cancel</Button>

@@ -9,12 +9,18 @@ import {
   CardTitle,
 } from "reactstrap";
 
-export const TaskCard = ({ taskInfo }) => {
+export const TaskCard = ({ taskInfo, SetThisItemsArray, thisItemsArray }) => {
   const { title, description, status, _id } = taskInfo;
   const [taskStatus, setTaskStatus] = useState(status);
   const deleteHandle = () => {
     fetch(`http://localhost:3001/task/${_id}`, {
       method: "DELETE",
+    }).then((res) => {
+      SetThisItemsArray(
+        thisItemsArray.filter((task) => {
+          return task._id !== _id;
+        })
+      );
     });
   };
   const statushandle = () => {
@@ -22,7 +28,7 @@ export const TaskCard = ({ taskInfo }) => {
       headers: { "Content-Type": "application/json" },
       method: "PUT",
       body: JSON.stringify({
-        status: "done",
+        status: taskStatus === "done" ? "active" : "done",
       }),
     })
       .then((res) => res.json())

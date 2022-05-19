@@ -9,8 +9,14 @@ import {
   CardTitle,
 } from "reactstrap";
 
-export const TaskCard = ({ taskInfo, SetThisItemsArray, thisItemsArray }) => {
+export const TaskCard = ({
+  taskInfo,
+  SetThisItemsArray,
+  thisItemsArray,
+  editModalOpen,
+}) => {
   const { title, description, status, _id } = taskInfo;
+
   const [taskStatus, setTaskStatus] = useState(status);
   const deleteHandle = () => {
     fetch(`http://localhost:3001/task/${_id}`, {
@@ -70,7 +76,14 @@ export const TaskCard = ({ taskInfo, SetThisItemsArray, thisItemsArray }) => {
         >
           {taskStatus}
         </Button>
-        <Button color="dark" className="mx-2" onClick={deleteHandle}>
+        <Button
+          color="primary"
+          className="mx-2"
+          onClick={() => editModalOpen(taskInfo)}
+        >
+          Edit
+        </Button>
+        <Button color="dark" onClick={deleteHandle}>
           Delete
         </Button>{" "}
       </CardBody>

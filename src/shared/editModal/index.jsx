@@ -8,49 +8,31 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { BACKEND_URL } from "../../data";
 import { isRequired, maxLength30, minLength3 } from "../../helpers/validations";
 
-export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
+const EditTaskForm = ({
+  onSubmitCallback,
+  SetThisItemsArray,
+  editModalTask,
+}) => {
   const [inputsData, setInputsData] = useState({
     title: {
-      value: "",
+      value: editModalTask.title,
       error: undefined,
       validations: [isRequired, minLength3, maxLength30],
     },
     description: {
-      value: "",
+      value: editModalTask.description,
       error: undefined,
       validations: [isRequired, minLength3, maxLength30],
     },
   });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:3001/task", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify({
-        title: inputsData.title.value,
-        description: inputsData.description.value,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        SetThisItemsArray((prev) => {
-          console.log(data);
-          return [...prev, data];
-        });
-      });
-
-    onSubmitCallback();
-  };
-
   const handleChange = (e) => {
     const { value, name } = e.target;
-
-    const { validations } = inputsData[name];
-
     let error;
+    const { validations } = inputsData[name];
 
     for (let i = 0; i < validations.length; i++) {
       const validation = validations[i];
@@ -74,11 +56,45 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
     });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const {
+      title: { value: title },
+      description: { value: description },
+    } = inputsData;
+
+    const editFormData = {
+      title,
+      description,
+    };
+
+    fetch(`${BACKEND_URL}/task/${editModalTask._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editFormData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        SetThisItemsArray((prev) => {
+          return prev.map((task) => {
+            if (task._id === editModalTask._id) {
+              return data;
+            }
+            return task;
+          });
+        });
+      });
+    onSubmitCallback();
+  };
+
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
         <Label for="titleId">Title</Label>
         <Input
+          value={inputsData.title.value}
           id="titleId"
           name="title"
           placeholder="Task title"
@@ -93,6 +109,7 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
       <FormGroup>
         <Label for="descriptionId">Description</Label>
         <Input
+          value={inputsData.description.value}
           id="descriptionId"
           name="description"
           placeholder="Task descriptionId"
@@ -106,20 +123,22 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
       </FormGroup>
       {/* Date Picker */}
       <Button color="primary" onClick={onSubmit}>
-        Add Task
+        Edit Task
       </Button>{" "}
-      <Button color="primary">Clear</Button>{" "}
     </Form>
   );
 };
-export const SharedModal = ({ onClose, SetThisItemsArray }) => {
+
+export const EditModal = ({ onClose, SetThisItemsArray, editModalTask }) => {
   return (
     <Modal toggle={onClose} isOpen={true}>
-      <ModalHeader toggle={onClose}>Add new task</ModalHeader>
+      <ModalHeader toggle={onClose}>Edit Your task</ModalHeader>
+
       <ModalBody>
-        <AddTaskForm
+        <EditTaskForm
           onSubmitCallback={onClose}
           SetThisItemsArray={SetThisItemsArray}
+          editModalTask={editModalTask}
         />
       </ModalBody>
       <ModalFooter>

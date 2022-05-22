@@ -1,26 +1,22 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button, Input } from "reactstrap";
 import { SharedModal } from "../../../../../shared/sharedModal";
 import "./styles.css";
 
-const SortSelect = () => {
+const SortSelect = ({ changeSortHandler }) => {
   return (
-    <Input name="sort_by" type="select">
-      <option>Sort By</option>
-      <option>Newest First</option>
-      <option>Oldest First</option>
-      <option>Todo at Newest</option>
+    <Input name="sort_by" type="select" onChange={changeSortHandler}>
+      <option value={"creation_date_newest"}>Created newest</option>
+      <option value={"creation_date_oldest"}>Completed oldest</option>
+      <option value={"completion_date_newest"}>Completed newest</option>
+      <option value={"completion_date_oldest"}>Completed oldest</option>
+      <option value={"a-z"}>A - Z</option>
+      <option value={"z-a"}>Z - A</option>
     </Input>
   );
 };
 
-const SearchInput = ({ thisItemsArray, SetThisItemsArray }) => {
-  const searchChange = (e) => {
-    const { value } = e.target;
-    fetch(`http://localhost:3001/task?search=${value}`)
-      .then((res) => res.json())
-      .then((data) => SetThisItemsArray(data));
-  };
+const SearchInput = ({ searchChange }) => {
   return (
     <Input
       type="search"
@@ -44,6 +40,40 @@ export const HeadRightMenu = ({
       setIsShowAddTaskModal(true);
     }
   };
+
+  ////////////////////////////////////////////////////////////////
+
+  // const [sortQueryText, setSortQueryText] = useState(null);
+  // const [searchQueryText, setSearchSortQueryText] = useState(null);
+
+  // const queryCallBack = () => {
+  //   fetch(`http://localhost:3001/task?search=${searchQueryText}`)
+  //     .then((res) => res.json())
+  //     .then((data) => SetThisItemsArray(data));
+  // };
+
+  /// sort
+  const changeSortHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      const { value } = e.target;
+      fetch(`http://localhost:3001/task?sort=${value}`)
+        .then((res) => res.json())
+        .then((data) => SetThisItemsArray(data));
+    },
+    [SetThisItemsArray]
+  );
+  ////search
+  const searchChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+
+    fetch(`http://localhost:3001/task?search=${value}`)
+      .then((res) => res.json())
+      .then((data) => SetThisItemsArray(data));
+  };
+  ///////////
+
   return (
     <div
       className={
@@ -58,11 +88,8 @@ export const HeadRightMenu = ({
       >
         Add New Task
       </Button>{" "}
-      <SortSelect />
-      <SearchInput
-        SetThisItemsArray={SetThisItemsArray}
-        thisItemsArray={thisItemsArray}
-      />
+      <SortSelect changeSortHandler={changeSortHandler} />
+      <SearchInput searchChange={searchChange} />
       {isShowAddTaskModal && (
         <SharedModal
           SetThisItemsArray={SetThisItemsArray}

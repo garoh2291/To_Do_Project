@@ -1,7 +1,7 @@
 import { FilterContent } from "./FilterContent";
 import { FilterHeader } from "./FilterHeading";
 import "./styles.css";
-export const FilterSection = ({ isOpen, onClick }) => {
+export const FilterSection = ({ isOpen, onClick, getTasks }) => {
   return (
     <div className={isOpen ? "filter-section-open" : "filter-section-close"}>
       <i
@@ -11,7 +11,7 @@ export const FilterSection = ({ isOpen, onClick }) => {
         }`}
       ></i>
       <FilterHeader isOpen={isOpen} onClick={onClick} />
-      <FilterContent isOpen={isOpen} />
+      <FilterContent isOpen={isOpen} getTasks={getTasks} />
     </div>
   );
 };

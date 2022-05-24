@@ -5,6 +5,7 @@ export const Head = ({
   isOpen,
   SetThisItemsArray,
   thisItemsArray,
+  getTasks,
 }) => {
   return (
     <div
@@ -14,6 +15,7 @@ export const Head = ({
         isOpen={isOpen}
         SetThisItemsArray={SetThisItemsArray}
         thisItemsArray={thisItemsArray}
+        getTasks={getTasks}
       />
       {isOpen ? (
         <i class="bx pull-up bx-chevrons-up" onClick={onClick}></i>

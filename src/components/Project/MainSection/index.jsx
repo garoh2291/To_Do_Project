@@ -7,6 +7,7 @@ export const MainSection = ({
   thisItemsArray,
   SetThisItemsArray,
   editModalOpen,
+  getTasks,
 }) => {
   const [isMainHeaderOpen, setIsMainHeaderOpen] = useState(false);
 
@@ -25,6 +26,7 @@ export const MainSection = ({
         isOpen={isMainHeaderOpen}
         SetThisItemsArray={SetThisItemsArray}
         thisItemsArray={thisItemsArray}
+        getTasks={getTasks}
       />
       <Body
         isOpen={isMainHeaderOpen}

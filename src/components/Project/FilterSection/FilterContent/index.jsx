@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SearchMethod } from "./CheckComponent";
 import "./styles.css";
-export const FilterContent = ({ isOpen }) => {
+export const FilterContent = ({ isOpen, getTasks }) => {
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const filterHandler = () => {
     if (isSectionOpen) {
@@ -9,8 +9,8 @@ export const FilterContent = ({ isOpen }) => {
     } else {
       setIsSectionOpen(true);
     }
-    console.log(isSectionOpen);
   };
+
   return (
     <div className="filter-content">
       {isOpen ? (
@@ -21,8 +21,8 @@ export const FilterContent = ({ isOpen }) => {
           </div>
           {isSectionOpen ? (
             <div className="filter-methods-open">
-              <SearchMethod name="Active" />
-              <SearchMethod name="Done" />
+              <SearchMethod name="active" type="status" getTasks={getTasks} />
+              <SearchMethod name="done" type="status" getTasks={getTasks} />
               <SearchMethod name="Created " />
               <SearchMethod name="Created" />
               <SearchMethod name="completed " />

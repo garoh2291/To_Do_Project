@@ -18,3 +18,7 @@
   font-size: 32px;
   font-weight: bolder;
 }
+
+.nav-item1 a {
+  text-decoration: none;
+}

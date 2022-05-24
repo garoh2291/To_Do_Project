@@ -5,7 +5,7 @@ export const FilterHeader = ({ isOpen, onClick }) => {
       {isOpen ? (
         <h6 className="filter-header-text">Filters</h6>
       ) : (
-        <i class="filter-small-icon bx bx-filter-alt" onClick={onClick}></i>
+        <i className="filter-small-icon bx bx-filter-alt" onClick={onClick}></i>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SearchMethod } from "./CheckComponent";
+import { SearchRadioMethod } from "./StatusComponent";
 import "./styles.css";
 export const FilterContent = ({ isOpen, getTasks }) => {
   const [isSectionOpen, setIsSectionOpen] = useState(false);
@@ -17,16 +18,12 @@ export const FilterContent = ({ isOpen, getTasks }) => {
         <div className="filer-section">
           <div className="filter-by" onClick={filterHandler}>
             <span>Filter by</span>
-            <i class="filter-icon-by bx bx-filter"></i>
+            <i className="filter-icon-by bx bx-filter"></i>
           </div>
           {isSectionOpen ? (
             <div className="filter-methods-open">
-              <SearchMethod name="active" type="status" getTasks={getTasks} />
-              <SearchMethod name="done" type="status" getTasks={getTasks} />
-              <SearchMethod name="Created " />
-              <SearchMethod name="Created" />
-              <SearchMethod name="completed " />
-              <SearchMethod name="completed " />
+              <SearchRadioMethod getTasks={getTasks} filterOption="status" />
+              <SearchMethod getTasks={getTasks} />
             </div>
           ) : (
             ""

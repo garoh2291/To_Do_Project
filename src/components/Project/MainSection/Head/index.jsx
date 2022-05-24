@@ -18,9 +18,9 @@ export const Head = ({
         getTasks={getTasks}
       />
       {isOpen ? (
-        <i class="bx pull-up bx-chevrons-up" onClick={onClick}></i>
+        <i className="bx pull-up bx-chevrons-up" onClick={onClick}></i>
       ) : (
-        <i class="pull-down bx bx-chevrons-down" onClick={onClick}></i>
+        <i className="pull-down bx bx-chevrons-down" onClick={onClick}></i>
       )}
     </div>
   );

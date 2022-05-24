@@ -80,7 +80,6 @@ export const Project = () => {
     } else {
       setIsFilterOpen(true);
     }
-    console.log(isFilterOpen);
   };
   return (
     <div className="project-layout">

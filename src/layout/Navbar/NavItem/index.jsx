@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 export const NavItem = ({ label, link, isActive, onClick }) => {
@@ -6,7 +7,7 @@ export const NavItem = ({ label, link, isActive, onClick }) => {
       className={`nav-item1 ${isActive ? "active" : ""}`}
       onClick={() => onClick(link)}
     >
-      {label}
+      <Link to={`/${link}`}>{label}</Link>
     </li>
   );
 };

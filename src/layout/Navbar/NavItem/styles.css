@@ -5,20 +5,21 @@
   cursor: pointer;
   height: 100%;
   display: block;
-  padding: 0 20px;
+  margin-right: 20px;
 }
-.nav-item1:hover {
+.nav-item1 a:hover {
   background-color: #abc7ff;
   color: #fff;
 }
 
-.nav-item1.active {
+.nav-item1 a.active {
   background-color: #abc7ff;
   color: #fff;
   font-size: 32px;
   font-weight: bolder;
 }
-
 .nav-item1 a {
   text-decoration: none;
+  height: 100%;
+  display: block;
 }

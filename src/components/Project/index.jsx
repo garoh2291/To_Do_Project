@@ -35,16 +35,20 @@ export const Project = () => {
       });
     }
   };
-
-  useEffect(() => {
+  const generateQuery = (_searchSortQuery) => {
     let query = "";
     searchSortQuery.forEach((item) => {
       if (item.queryValue !== "") {
         return (query += `${item.queryRoute}=${item.queryValue}&`);
       }
     });
+    return query;
+  };
 
-    if (query === "") {
+  useEffect(() => {
+    const query = generateQuery(searchSortQuery);
+
+    if (!query) {
       getTasksRequest().then((data) => {
         SetThisItemsArray(data);
       });

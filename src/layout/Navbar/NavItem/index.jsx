@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./styles.css";
 
-export const NavItem = ({ label, link, isActive, onClick }) => {
+export const NavItem = ({ label, link }) => {
   return (
-    <li
-      className={`nav-item1 ${isActive ? "active" : ""}`}
-      onClick={() => onClick(link)}
-    >
-      <Link to={`/${link}`}>{label}</Link>
+    <li className="nav-item1">
+      <NavLink
+        to={`/${link}`}
+        className={({ isActive }) => (isActive ? "active" : undefined)}
+      >
+        {label}
+      </NavLink>
     </li>
   );
 };

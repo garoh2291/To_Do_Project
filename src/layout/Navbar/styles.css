@@ -5,6 +5,7 @@
 }
 .navbar-list1 {
   display: flex;
+  flex-grow: auto;
   align-items: center;
   height: 100%;
 }

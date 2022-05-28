@@ -8,9 +8,18 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { isRequired, maxLength30, minLength3 } from "../../helpers/validations";
+import {
+  isRequired,
+  maxLength400,
+  maxLength30,
+  minLength3,
+} from "../../helpers/validations";
+import * as moment from "moment";
+import DatePicker from "react-datepicker";
 
 export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
+  const [completeDate, setCompleteDate] = useState(new Date());
+
   const [inputsData, setInputsData] = useState({
     title: {
       value: "",
@@ -20,7 +29,7 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
     description: {
       value: "",
       error: undefined,
-      validations: [isRequired, minLength3, maxLength30],
+      validations: [isRequired, minLength3, maxLength400],
     },
   });
 
@@ -32,14 +41,21 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
       body: JSON.stringify({
         title: inputsData.title.value,
         description: inputsData.description.value,
+        date: moment(completeDate).format("YYYY-MM-DD"),
       }),
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.error) {
+          throw data.error;
+        }
         SetThisItemsArray((prev) => {
           console.log(data);
           return [...prev, data];
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     onSubmitCallback();
@@ -95,7 +111,7 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
         <Input
           id="descriptionId"
           name="description"
-          placeholder="Task descriptionId"
+          placeholder="Task description"
           type="text"
           onChange={handleChange}
           invalid={!!inputsData.description.error}
@@ -104,7 +120,10 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
           <FormFeedback>{inputsData.description.error}</FormFeedback>
         )}
       </FormGroup>
-      {/* Date Picker */}
+      <DatePicker
+        selected={completeDate}
+        onChange={(date) => setCompleteDate(date)}
+      />
       <Button color="primary" onClick={onSubmit}>
         Add Task
       </Button>{" "}

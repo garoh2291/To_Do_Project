@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -54,7 +55,10 @@ export const TaskCard = ({
         width="100%"
       />
       <CardBody>
-        <CardTitle tag="h5">{title}</CardTitle>
+        <Link to={`/project/${_id}`}>
+          {" "}
+          <CardTitle tag="h5">{title}</CardTitle>
+        </Link>
         <CardSubtitle className="mb-2 text-muted" tag="h6">
           Card subtitle
         </CardSubtitle>

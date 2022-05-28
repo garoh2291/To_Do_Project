@@ -15,4 +15,5 @@ const maxLength = (length) => (value) => {
     : `The min lenght must be ${length}`;
 };
 
+export const maxLength400 = maxLength(400);
 export const maxLength30 = maxLength(30);

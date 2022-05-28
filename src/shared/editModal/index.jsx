@@ -9,7 +9,12 @@ import {
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { BACKEND_URL } from "../../data";
-import { isRequired, maxLength30, minLength3 } from "../../helpers/validations";
+import {
+  isRequired,
+  maxLength30,
+  maxLength400,
+  minLength3,
+} from "../../helpers/validations";
 
 const EditTaskForm = ({
   onSubmitCallback,
@@ -25,7 +30,7 @@ const EditTaskForm = ({
     description: {
       value: editModalTask.description,
       error: undefined,
-      validations: [isRequired, minLength3, maxLength30],
+      validations: [isRequired, minLength3, maxLength400],
     },
   });
 

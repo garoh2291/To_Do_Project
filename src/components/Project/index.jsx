@@ -8,12 +8,6 @@ import "./styles.css";
 export const Project = () => {
   const [thisItemsArray, SetThisItemsArray] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/task")
-  //     .then((res) => res.json())
-  //     .then((data) => SetThisItemsArray(data));
-  // }, []);
-
   ////////added by Garnik
   const [searchSortQuery, setSearchSortQuery] = useState([]);
   const getTasksClosure = (filterEntries) => {

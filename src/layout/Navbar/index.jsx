@@ -1,15 +1,9 @@
-import { useState } from "react";
-
 import { NAVBAR_PAGES } from "../../data";
 import { NavItem } from "./NavItem";
 import "./styles.css";
 
 const { project, contact, aboutMe } = NAVBAR_PAGES;
 export const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(null);
-  const navItemClickHandler = (link) => {
-    setActiveLink(link);
-  };
   return (
     <>
       <nav className="navbar1">

@@ -8,7 +8,7 @@ export const NavItem = ({ label, link }) => {
         to={`/${link}`}
         className={({ isActive }) => (isActive ? "active" : undefined)}
       >
-        111
+        {label}
       </NavLink>
     </li>
   );

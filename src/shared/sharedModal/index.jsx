@@ -34,8 +34,9 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
   });
 
   const onSubmit = (e) => {
+    // https://todo-list-tco.herokuapp.com/task
     e.preventDefault();
-    fetch("http://localhost:3001/task", {
+    fetch("https://todo-list-tco.herokuapp.com/task", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({

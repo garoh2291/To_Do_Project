@@ -20,7 +20,7 @@ export const TaskCard = ({
 
   const [taskStatus, setTaskStatus] = useState(status);
   const deleteHandle = () => {
-    fetch(`http://localhost:3001/task/${_id}`, {
+    fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
       method: "DELETE",
     }).then((res) => {
       SetThisItemsArray(
@@ -31,7 +31,7 @@ export const TaskCard = ({
     });
   };
   const statushandle = () => {
-    fetch(`http://localhost:3001/task/${_id}`, {
+    fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
       headers: { "Content-Type": "application/json" },
       method: "PUT",
       body: JSON.stringify({

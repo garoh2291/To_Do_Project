@@ -35,7 +35,7 @@ export const TaskCard = ({
       headers: { "Content-Type": "application/json" },
       method: "PUT",
       body: JSON.stringify({
-        status: taskStatus === "done" ? "active" : "done",
+        status: taskStatus === "done" ? "backlog" : "done",
       }),
     })
       .then((res) => res.json())

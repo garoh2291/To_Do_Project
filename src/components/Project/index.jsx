@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { getTasksRequest } from "../../api";
+import { TaskContext } from "../../context";
 import { EditModal } from "../../shared/editModal";
 import { FilterSection } from "./FilterSection";
 import { MainSection } from "./MainSection";
 import "./styles.css";
 
 export const Project = () => {
-  const [thisItemsArray, SetThisItemsArray] = useState([]);
+  const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
 
   ////////added by Garnik
   const [searchSortQuery, setSearchSortQuery] = useState([]);
@@ -31,7 +32,7 @@ export const Project = () => {
   };
   const generateQuery = (_searchSortQuery) => {
     let query = "";
-    searchSortQuery.forEach((item) => {
+    _searchSortQuery.forEach((item) => {
       if (item.queryValue !== "") {
         return (query += `${item.queryRoute}=${item.queryValue}&`);
       }
@@ -51,7 +52,7 @@ export const Project = () => {
         SetThisItemsArray(data);
       });
     }
-  }, [searchSortQuery]);
+  }, [searchSortQuery, SetThisItemsArray]);
   ////////////////
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -90,8 +91,6 @@ export const Project = () => {
       />
       <MainSection
         isOpen={isFilterOpen}
-        thisItemsArray={thisItemsArray}
-        SetThisItemsArray={SetThisItemsArray}
         editModalOpen={editModalOpen}
         getTasks={getTasksClosure}
       />

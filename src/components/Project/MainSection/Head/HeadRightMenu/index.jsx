@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Input } from "reactstrap";
+import { TaskContext } from "../../../../../context";
 import { SharedModal } from "../../../../../shared/sharedModal";
 import "./styles.css";
 
@@ -27,7 +28,7 @@ const SearchInput = ({ handleSearch }) => {
   );
 };
 
-export const HeadRightMenu = ({ isOpen, SetThisItemsArray, getTasks }) => {
+export const HeadRightMenu = ({ isOpen, getTasks }) => {
   const [isShowAddTaskModal, setIsShowAddTaskModal] = useState(false);
   const handleBtnClick = () => {
     if (isShowAddTaskModal) {
@@ -71,7 +72,6 @@ export const HeadRightMenu = ({ isOpen, SetThisItemsArray, getTasks }) => {
       <SearchInput handleSearch={handleSearch} />
       {isShowAddTaskModal && (
         <SharedModal
-          SetThisItemsArray={SetThisItemsArray}
           onClose={() => {
             setIsShowAddTaskModal(false);
           }}

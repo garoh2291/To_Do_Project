@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Form,
@@ -16,8 +16,10 @@ import {
 } from "../../helpers/validations";
 import * as moment from "moment";
 import DatePicker from "react-datepicker";
+import { TaskContext } from "../../context";
 
-export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
+export const AddTaskForm = ({ onSubmitCallback }) => {
+  const { SetThisItemsArray } = useContext(TaskContext);
   const [completeDate, setCompleteDate] = useState(new Date());
 
   const [inputsData, setInputsData] = useState({
@@ -34,7 +36,6 @@ export const AddTaskForm = ({ onSubmitCallback, SetThisItemsArray }) => {
   });
 
   const onSubmit = (e) => {
-    // https://todo-list-tco.herokuapp.com/task
     e.preventDefault();
     fetch("https://todo-list-tco.herokuapp.com/task", {
       headers: { "Content-Type": "application/json" },
@@ -137,10 +138,7 @@ export const SharedModal = ({ onClose, SetThisItemsArray }) => {
     <Modal toggle={onClose} isOpen={true}>
       <ModalHeader toggle={onClose}>Add new task</ModalHeader>
       <ModalBody>
-        <AddTaskForm
-          onSubmitCallback={onClose}
-          SetThisItemsArray={SetThisItemsArray}
-        />
+        <AddTaskForm onSubmitCallback={onClose} />
       </ModalBody>
       <ModalFooter>
         <Button onClick={onClose}>Cancel</Button>

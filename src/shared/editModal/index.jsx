@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Form,
@@ -8,6 +8,7 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { TaskContext } from "../../context";
 import { BACKEND_URL } from "../../data";
 import {
   isRequired,
@@ -16,11 +17,8 @@ import {
   minLength3,
 } from "../../helpers/validations";
 
-const EditTaskForm = ({
-  onSubmitCallback,
-  SetThisItemsArray,
-  editModalTask,
-}) => {
+const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
+  const { SetThisItemsArray } = useContext(TaskContext);
   const [inputsData, setInputsData] = useState({
     title: {
       value: editModalTask.title,
@@ -134,7 +132,7 @@ const EditTaskForm = ({
   );
 };
 
-export const EditModal = ({ onClose, SetThisItemsArray, editModalTask }) => {
+export const EditModal = ({ onClose, editModalTask }) => {
   return (
     <Modal toggle={onClose} isOpen={true}>
       <ModalHeader toggle={onClose}>Edit Your task</ModalHeader>
@@ -142,7 +140,6 @@ export const EditModal = ({ onClose, SetThisItemsArray, editModalTask }) => {
       <ModalBody>
         <EditTaskForm
           onSubmitCallback={onClose}
-          SetThisItemsArray={SetThisItemsArray}
           editModalTask={editModalTask}
         />
       </ModalBody>

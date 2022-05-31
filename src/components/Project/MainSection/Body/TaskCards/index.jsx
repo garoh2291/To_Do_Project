@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -9,13 +9,14 @@ import {
   CardText,
   CardTitle,
 } from "reactstrap";
+import { TaskContext } from "../../../../../context";
 
 export const TaskCard = ({
   taskInfo,
-  SetThisItemsArray,
-  thisItemsArray,
+
   editModalOpen,
 }) => {
+  const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
   const { title, description, status, _id } = taskInfo;
 
   const [taskStatus, setTaskStatus] = useState(status);

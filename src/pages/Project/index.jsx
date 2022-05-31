@@ -1,5 +1,12 @@
 import { Project } from "../../components/Project";
+import { TaskContextProvider } from "../../context/providers/task-context-provider";
 
 export const ProjectPage = () => {
-  return <Project />;
+  return (
+    <div>
+      <TaskContextProvider>
+        <Project />
+      </TaskContextProvider>
+    </div>
+  );
 };

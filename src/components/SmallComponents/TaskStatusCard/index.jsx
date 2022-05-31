@@ -2,7 +2,7 @@ import "./styles.css";
 import * as moment from "moment";
 
 export const TaskStatusSide = ({ task }) => {
-  const { created_at, date, status } = task;
+  const { created_at, priority, date, status } = task;
 
   return (
     <div className="status_info">
@@ -15,6 +15,9 @@ export const TaskStatusSide = ({ task }) => {
       </p>
       <p>
         Due Date: <span>{moment(date).format("DD-MM-YYYY")}</span>
+      </p>
+      <p>
+        Priority : <span>{priority}</span>
       </p>
       <p>
         Status is{" "}

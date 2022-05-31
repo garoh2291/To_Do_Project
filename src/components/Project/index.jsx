@@ -7,7 +7,7 @@ import { MainSection } from "./MainSection";
 import "./styles.css";
 
 export const Project = () => {
-  const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
+  const { SetThisItemsArray } = useContext(TaskContext);
 
   ////////added by Garnik
   const [searchSortQuery, setSearchSortQuery] = useState([]);
@@ -85,8 +85,6 @@ export const Project = () => {
       <FilterSection
         isOpen={isFilterOpen}
         onClick={filterHandleClick}
-        thisItemsArray={thisItemsArray}
-        SetThisItemsArray={SetThisItemsArray}
         getTasks={getTasksClosure}
       />
       <MainSection
@@ -97,7 +95,6 @@ export const Project = () => {
       {isEditOpen && (
         <EditModal
           onClose={() => setIsEditOpen(false)}
-          SetThisItemsArray={SetThisItemsArray}
           editModalTask={editModalTask}
         />
       )}

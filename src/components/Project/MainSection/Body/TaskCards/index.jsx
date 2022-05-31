@@ -11,11 +11,7 @@ import {
 } from "reactstrap";
 import { TaskContext } from "../../../../../context";
 
-export const TaskCard = ({
-  taskInfo,
-
-  editModalOpen,
-}) => {
+export const TaskCard = ({ taskInfo, editModalOpen }) => {
   const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
   const { title, description, status, _id } = taskInfo;
 

@@ -11,7 +11,12 @@ import {
 } from "reactstrap";
 import { TaskContext } from "../../../../../context";
 
-export const TaskCard = ({ taskInfo, editModalOpen }) => {
+export const TaskCard = ({
+  taskInfo,
+  editModalOpen,
+  toggleDeletedTask,
+  taskDeleteBatchMode,
+}) => {
   const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
   const { title, description, status, _id } = taskInfo;
 
@@ -45,6 +50,11 @@ export const TaskCard = ({ taskInfo, editModalOpen }) => {
       style={{ width: "300px", minHeight: "300px", marginTop: "5px" }}
       className="mx-2"
     >
+      {taskDeleteBatchMode && (
+        <div style={{ position: "absolute", right: "0" }}>
+          <input type="checkbox" onClick={() => toggleDeletedTask(_id)} />
+        </div>
+      )}
       <CardImg
         alt="Card image cap"
         src="https://images.idgesg.net/images/article/2017/08/14_check-your-device-manager-100732276-large.jpg?auto=webp&quality=85,70"
@@ -57,7 +67,7 @@ export const TaskCard = ({ taskInfo, editModalOpen }) => {
           <CardTitle tag="h5">{title}</CardTitle>
         </Link>
         <CardSubtitle className="mb-2 text-muted" tag="h6">
-          Card subtitle
+          Description
         </CardSubtitle>
         <CardText
           style={{
@@ -74,16 +84,19 @@ export const TaskCard = ({ taskInfo, editModalOpen }) => {
           title="Click to make Done"
           color={taskStatus === "done" ? "danger" : "success"}
           onClick={statushandle}
+          className="mx-1"
         >
           {taskStatus}
         </Button>
-        <Button
-          color="primary"
-          className="mx-2"
-          onClick={() => editModalOpen(taskInfo)}
-        >
-          Edit
-        </Button>
+        {taskDeleteBatchMode && (
+          <Button
+            color="primary"
+            className="mx-1"
+            onClick={() => editModalOpen(taskInfo)}
+          >
+            Edit
+          </Button>
+        )}
         <Button color="dark" onClick={deleteHandle}>
           Delete
         </Button>{" "}

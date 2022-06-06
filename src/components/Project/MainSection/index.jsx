@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TaskDeleteBatchMode } from "../../../context/providers/task-context-provider";
 import { Body } from "./Body";
 import { Head } from "./Head";
 import "./styles.css";

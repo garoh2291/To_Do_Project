@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { getTasksRequest } from "../../api";
 import { TaskContext } from "../../context";
+import { TaskDeleteBatchProvider } from "../../context/providers/task-context-provider";
 import { EditModal } from "../../shared/editModal";
 import { FilterSection } from "./FilterSection";
 import { MainSection } from "./MainSection";
@@ -82,22 +83,24 @@ export const Project = () => {
   };
   return (
     <div className="project-layout">
-      <FilterSection
-        isOpen={isFilterOpen}
-        onClick={filterHandleClick}
-        getTasks={getTasksClosure}
-      />
-      <MainSection
-        isOpen={isFilterOpen}
-        editModalOpen={editModalOpen}
-        getTasks={getTasksClosure}
-      />
-      {isEditOpen && (
-        <EditModal
-          onClose={() => setIsEditOpen(false)}
-          editModalTask={editModalTask}
+      <TaskDeleteBatchProvider>
+        <FilterSection
+          isOpen={isFilterOpen}
+          onClick={filterHandleClick}
+          getTasks={getTasksClosure}
         />
-      )}
+        <MainSection
+          isOpen={isFilterOpen}
+          editModalOpen={editModalOpen}
+          getTasks={getTasksClosure}
+        />
+        {isEditOpen && (
+          <EditModal
+            onClose={() => setIsEditOpen(false)}
+            editModalTask={editModalTask}
+          />
+        )}
+      </TaskDeleteBatchProvider>
     </div>
   );
 };

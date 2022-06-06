@@ -1,11 +1,6 @@
 import { HeadRightMenu } from "./HeadRightMenu";
 import "./styles.css";
-export const Head = ({
-  onClick,
-  isOpen,
-
-  getTasks,
-}) => {
+export const Head = ({ onClick, isOpen, getTasks }) => {
   return (
     <div
       className={isOpen ? "main-section-head-open" : "main-section-head-close"}

@@ -52,7 +52,6 @@ export const AddTaskForm = ({ onSubmitCallback }) => {
           throw data.error;
         }
         SetThisItemsArray((prev) => {
-          console.log(data);
           return [...prev, data];
         });
       })

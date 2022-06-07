@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Form,
@@ -8,7 +8,6 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { TaskContext } from "../../context";
 import { BACKEND_URL } from "../../data";
 import {
   isRequired,
@@ -16,9 +15,10 @@ import {
   maxLength400,
   minLength3,
 } from "../../helpers/validations";
+import { useDispatch } from "react-redux";
+import { editTask } from "../../redux/task-slice";
 
 const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
-  const { SetThisItemsArray } = useContext(TaskContext);
   const [inputsData, setInputsData] = useState({
     title: {
       value: editModalTask.title,
@@ -31,6 +31,7 @@ const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
       validations: [isRequired, minLength3, maxLength400],
     },
   });
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -80,14 +81,7 @@ const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        SetThisItemsArray((prev) => {
-          return prev.map((task) => {
-            if (task._id === editModalTask._id) {
-              return data;
-            }
-            return task;
-          });
-        });
+        dispatch(editTask({ data }));
       });
     onSubmitCallback();
   };

@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button, Input } from "reactstrap";
-import { TaskContext } from "../../../../../context";
 import { SharedModal } from "../../../../../shared/sharedModal";
 import "./styles.css";
 

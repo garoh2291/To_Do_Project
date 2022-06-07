@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Form,
@@ -16,12 +16,12 @@ import {
 } from "../../helpers/validations";
 import * as moment from "moment";
 import DatePicker from "react-datepicker";
-import { TaskContext } from "../../context";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../redux/task-slice";
 
 export const AddTaskForm = ({ onSubmitCallback }) => {
-  const { SetThisItemsArray } = useContext(TaskContext);
   const [completeDate, setCompleteDate] = useState(new Date());
-
+  const dispatch = useDispatch();
   const [inputsData, setInputsData] = useState({
     title: {
       value: "",
@@ -51,9 +51,7 @@ export const AddTaskForm = ({ onSubmitCallback }) => {
         if (data.error) {
           throw data.error;
         }
-        SetThisItemsArray((prev) => {
-          return [...prev, data];
-        });
+        dispatch(addTask({ data }));
       })
       .catch((err) => {
         console.log(err);

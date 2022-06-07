@@ -76,7 +76,7 @@ export const LoginSection = () => {
       password,
     };
 
-    fetch(`http://localhost:3001/user/sign-in`, {
+    fetch(`${BACKEND_URL}/user/sign-in`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

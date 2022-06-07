@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -9,7 +9,8 @@ import {
   CardText,
   CardTitle,
 } from "reactstrap";
-import { TaskContext } from "../../../../../context";
+import { useDispatch } from "react-redux";
+import { deleteTask } from "../../../../../redux/task-slice";
 
 export const TaskCard = ({
   taskInfo,
@@ -17,21 +18,17 @@ export const TaskCard = ({
   toggleDeletedTask,
   taskDeleteBatchMode,
 }) => {
-  const { thisItemsArray, SetThisItemsArray } = useContext(TaskContext);
   const { title, description, status, _id } = taskInfo;
-
+  const dispatch = useDispatch();
   const [taskStatus, setTaskStatus] = useState(status);
   const deleteHandle = () => {
     fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
       method: "DELETE",
     }).then((res) => {
-      SetThisItemsArray(
-        thisItemsArray.filter((task) => {
-          return task._id !== _id;
-        })
-      );
+      dispatch(deleteTask({ _id }));
     });
   };
+
   const statushandle = () => {
     fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
       headers: { "Content-Type": "application/json" },

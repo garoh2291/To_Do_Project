@@ -2,10 +2,10 @@ import "./styles.css";
 
 export const PreLoader = () => {
   return (
-    <div class="forload">
-      <div class="loader-bg">
+    <div className="forload">
+      <div className="loader-bg">
         <h3>Loading...</h3>
-        <div class="loader">
+        <div className="loader">
           <span></span>
         </div>
       </div>

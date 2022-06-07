@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LoggedUser } from "../../../context";
+import { BACKEND_URL } from "../../../data";
 import "./styles.css";
 export const AuthItem = () => {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(LoggedUser);
 
   const logoutHandle = () => {
-    fetch("http://localhost:3001/user/sign-out", {
+    fetch(`${BACKEND_URL}/user/sign-out`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

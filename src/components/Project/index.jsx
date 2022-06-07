@@ -1,17 +1,20 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getTasksRequest } from "../../api";
-import { TaskContext } from "../../context";
+import { useDispatch } from "react-redux";
 import { TaskDeleteBatchProvider } from "../../context/providers/task-context-provider";
 import { EditModal } from "../../shared/editModal";
 import { FilterSection } from "./FilterSection";
 import { MainSection } from "./MainSection";
 import "./styles.css";
+import { setTasks } from "../../redux/task-slice";
+import { generateQuery } from "../../helpers";
 
 export const Project = () => {
-  const { SetThisItemsArray } = useContext(TaskContext);
+  const dispatch = useDispatch();
 
   ////////added by Garnik
   const [searchSortQuery, setSearchSortQuery] = useState([]);
+
   const getTasksClosure = (filterEntries) => {
     const newArr = searchSortQuery.filter((item) => {
       return item.queryRoute === filterEntries.queryRoute;
@@ -31,29 +34,21 @@ export const Project = () => {
       });
     }
   };
-  const generateQuery = (_searchSortQuery) => {
-    let query = "";
-    _searchSortQuery.forEach((item) => {
-      if (item.queryValue !== "") {
-        return (query += `${item.queryRoute}=${item.queryValue}&`);
-      }
-    });
-    return query;
-  };
 
   useEffect(() => {
     const query = generateQuery(searchSortQuery);
 
     if (!query) {
       getTasksRequest().then((data) => {
-        SetThisItemsArray(data);
+        dispatch(setTasks({ data }));
       });
     } else {
       getTasksRequest(query).then((data) => {
-        SetThisItemsArray(data);
+        dispatch(setTasks({ data }));
       });
     }
-  }, [searchSortQuery, SetThisItemsArray]);
+  }, [searchSortQuery]);
+
   ////////////////
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);

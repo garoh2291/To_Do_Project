@@ -4,11 +4,13 @@ import { PreLoader } from "../../../../PreLoader";
 import "./styles.css";
 import { TaskCard } from "./TaskCards";
 import { useSelector, useDispatch } from "react-redux";
-import { BACKEND_URL } from "../../../../data";
-import { removeMultitapleTasks } from "../../../../redux/task-slice";
+import {
+  deleteTaskThunk,
+  removeMultitapleTasksThunk,
+} from "../../../../redux/task-slice";
 
 export const Body = ({ isOpen, editModalOpen }) => {
-  const tasks = useSelector((state) => state.tasks.tasks);
+  const { tasks, status, error } = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
   const [deletedTasksSet, setDeletedTasksSet] = useState(new Set());
 
@@ -26,31 +28,25 @@ export const Body = ({ isOpen, editModalOpen }) => {
     });
   }, []);
 
+  const deleteHandle = (_id) => {
+    dispatch(deleteTaskThunk(_id));
+  };
+
   const handleBatchDelete = (setFunc) => {
     const batchDelTasks = Array.from(deletedTasksSet);
-    fetch(`${BACKEND_URL}/task`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        tasks: batchDelTasks,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(removeMultitapleTasks({ batchDelTasks }));
-
-        deletedTasksSet.clear();
-      });
+    deletedTasksSet.clear();
+    dispatch(removeMultitapleTasksThunk(batchDelTasks));
   };
 
   const changeEditMode = () => {
     setTaskDeleteBatchMode((prev) => !prev);
   };
 
-  if (tasks.length === 0) {
+  if (!tasks) {
     return <PreLoader />;
+  }
+  if (tasks.length === 0) {
+    return <h2>No Tasks</h2>;
   }
 
   return (
@@ -70,6 +66,7 @@ export const Body = ({ isOpen, editModalOpen }) => {
           isOpen ? "main-section-body-open" : "main-section-body-close"
         }
       >
+        {error && <h2>An error occured : {error}</h2>}
         {tasks.map((task) => (
           <TaskCard
             taskInfo={task}
@@ -77,6 +74,7 @@ export const Body = ({ isOpen, editModalOpen }) => {
             editModalOpen={editModalOpen}
             toggleDeletedTask={toggleDeletedTask}
             taskDeleteBatchMode={taskDeleteBatchMode}
+            deleteHandle={deleteHandle}
           />
         ))}
       </div>

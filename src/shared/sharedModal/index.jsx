@@ -17,7 +17,7 @@ import {
 import * as moment from "moment";
 import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../redux/task-slice";
+import { addTaskThunk } from "../../redux/task-slice";
 
 export const AddTaskForm = ({ onSubmitCallback }) => {
   const [completeDate, setCompleteDate] = useState(new Date());
@@ -37,27 +37,12 @@ export const AddTaskForm = ({ onSubmitCallback }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetch("https://todo-list-tco.herokuapp.com/task", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify({
-        title: inputsData.title.value,
-        description: inputsData.description.value,
-        date: moment(completeDate).format("YYYY-MM-DD"),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          throw data.error;
-        }
-        dispatch(addTask({ data }));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    onSubmitCallback();
+    const newTaskObj = {
+      title: inputsData.title.value,
+      description: inputsData.description.value,
+      date: moment(completeDate).format("YYYY-MM-DD"),
+    };
+    dispatch(addTaskThunk({ newTaskObj, onSubmitCallback }));
   };
 
   const handleChange = (e) => {

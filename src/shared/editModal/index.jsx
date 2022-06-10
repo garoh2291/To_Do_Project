@@ -8,7 +8,6 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { BACKEND_URL } from "../../data";
 import {
   isRequired,
   maxLength30,
@@ -16,9 +15,10 @@ import {
   minLength3,
 } from "../../helpers/validations";
 import { useDispatch } from "react-redux";
-import { editTask } from "../../redux/task-slice";
+import { editTaskThunk } from "../../redux/task-slice";
 
 const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
+  const { _id } = editModalTask;
   const [inputsData, setInputsData] = useState({
     title: {
       value: editModalTask.title,
@@ -72,18 +72,7 @@ const EditTaskForm = ({ onSubmitCallback, editModalTask }) => {
       description,
     };
 
-    fetch(`${BACKEND_URL}/task/${editModalTask._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editFormData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(editTask({ data }));
-      });
-    onSubmitCallback();
+    dispatch(editTaskThunk({ editFormData, _id, onSubmitCallback }));
   };
 
   return (

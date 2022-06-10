@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { getTasksRequest } from "../../api";
 import { useDispatch } from "react-redux";
 import { TaskDeleteBatchProvider } from "../../context/providers/task-context-provider";
 import { EditModal } from "../../shared/editModal";
 import { FilterSection } from "./FilterSection";
 import { MainSection } from "./MainSection";
 import "./styles.css";
-import { setTasks } from "../../redux/task-slice";
+import { setTasksAsync } from "../../redux/task-slice";
 import { generateQuery } from "../../helpers";
 
 export const Project = () => {
@@ -38,16 +37,12 @@ export const Project = () => {
   useEffect(() => {
     const query = generateQuery(searchSortQuery);
 
-    if (!query) {
-      getTasksRequest().then((data) => {
-        dispatch(setTasks({ data }));
-      });
-    } else {
-      getTasksRequest(query).then((data) => {
-        dispatch(setTasks({ data }));
-      });
-    }
-  }, [searchSortQuery]);
+    dispatch(setTasksAsync(query));
+  }, [searchSortQuery, dispatch]);
+
+  // console.log(window.innerHeight);
+  // console.log(document.documentElement.scrollTop);
+  // console.log(document.documentElement.offsetHeight);
 
   ////////////////
 

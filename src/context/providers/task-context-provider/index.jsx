@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { LoggedUser, TaskContext, TaskDeleteBatchContext } from "../..";
-import { BACKEND_URL } from "../../../data";
 
 export const TaskContextProvider = ({ children }) => {
   const [thisItemsArray, SetThisItemsArray] = useState("");

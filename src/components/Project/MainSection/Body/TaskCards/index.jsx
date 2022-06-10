@@ -9,25 +9,16 @@ import {
   CardText,
   CardTitle,
 } from "reactstrap";
-import { useDispatch } from "react-redux";
-import { deleteTask } from "../../../../../redux/task-slice";
 
 export const TaskCard = ({
   taskInfo,
   editModalOpen,
   toggleDeletedTask,
   taskDeleteBatchMode,
+  deleteHandle,
 }) => {
   const { title, description, status, _id } = taskInfo;
-  const dispatch = useDispatch();
   const [taskStatus, setTaskStatus] = useState(status);
-  const deleteHandle = () => {
-    fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
-      method: "DELETE",
-    }).then((res) => {
-      dispatch(deleteTask({ _id }));
-    });
-  };
 
   const statushandle = () => {
     fetch(`https://todo-list-tco.herokuapp.com/task/${_id}`, {
@@ -94,7 +85,7 @@ export const TaskCard = ({
             Edit
           </Button>
         )}
-        <Button color="dark" onClick={deleteHandle}>
+        <Button color="dark" onClick={() => deleteHandle(_id)}>
           Delete
         </Button>{" "}
       </CardBody>
